@@ -1,4 +1,4 @@
-import '../style.scss';
+import '~/style.scss';
 import React, { useState } from 'react';
 
 export function TestComponent() {

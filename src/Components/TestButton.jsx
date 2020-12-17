@@ -1,6 +1,6 @@
-import '../style.scss';
+import '~/style.scss';
 import React, { useState } from 'react';
-import TestComponent from 'Components/TestComponent';
+import TestComponent from '~/Components/TestComponent';
 
 export function TestButton() {
   const [state, setState] = useState('Click Me please!');
