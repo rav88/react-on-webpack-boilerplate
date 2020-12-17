@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests mounted here :(\"",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "start": "webpack serve --open chrome"
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "start": "cross-env NODE_ENV=development webpack serve --open chrome"
   },
   "author": "Rafał Derlatka",
   "license": "ISC",
@@ -33,6 +33,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

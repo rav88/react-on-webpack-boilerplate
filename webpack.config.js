@@ -4,11 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-module.exports = {
+
+module.exports = env = {
   entry: { index: path.resolve(__dirname, 'src', 'index.js') },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'js/[name].[hash].bundle.js',
+    filename:
+      process.env.NODE_ENV == 'development'
+        ? 'js/[name].[hash].bundle.js'
+        : 'js/[name].bundle.js',
   },
 
   module: {
@@ -49,6 +53,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
     }),
+    new CleanWebpackPlugin.CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].bundle.css',
@@ -57,10 +62,10 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'public', to: '.' }],
     }),
-    new CleanWebpackPlugin.CleanWebpackPlugin(),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './build'),
     hot: true,
+    port: 3000,
   },
 };
